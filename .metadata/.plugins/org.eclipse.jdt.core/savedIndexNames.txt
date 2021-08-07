@@ -1,0 +1,8 @@
+INDEX VERSION 1.131+D:\Java\git\algaworks\.metadata\.plugins\org.eclipse.jdt.core
+2595721293.index
+1812997113.index
+1260351544.index
+2105224455.index
+1550399885.index
+3994941912.index
+5361035.index

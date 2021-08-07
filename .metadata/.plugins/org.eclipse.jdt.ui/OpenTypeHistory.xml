@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=meuprojeto01/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.m2ra.meuprojeto.interfaces{TipoCozinhaRepository.java[TipoCozinhaRepository" modifiers="513" timestamp="1627375912000"/>
+    <typeInfo handle="=meuprojeto01/E:\/Java\/.m2\/repository\/org\/hibernate\/hibernate-core\/5.4.32.Final\/hibernate-core-5.4.32.Final.jar=/maven.pomderived=/true=/=/maven.pomderived=/true=/=/maven.groupId=/org.hibernate=/=/maven.artifactId=/hibernate-core=/=/maven.version=/5.4.32.Final=/=/maven.scope=/compile=/&lt;org.hibernate.dialect(PostgreSQLDialect.class[PostgreSQLDialect" modifiers="1048609" timestamp="1626860526000"/>
+    <typeInfo handle="=meuprojeto01/E:\/Java\/.m2\/repository\/org\/hibernate\/hibernate-core\/5.4.32.Final\/hibernate-core-5.4.32.Final.jar=/maven.pomderived=/true=/=/maven.pomderived=/true=/=/maven.groupId=/org.hibernate=/=/maven.artifactId=/hibernate-core=/=/maven.version=/5.4.32.Final=/=/maven.scope=/compile=/&lt;org.hibernate.dialect(PostgreSQL10Dialect.class[PostgreSQL10Dialect" modifiers="33" timestamp="1626860526000"/>
+    <typeInfo handle="=meuprojeto01/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.m2ra.meuprojeto.interfaces{CidadeRepository.java[CidadeRepository" modifiers="513" timestamp="1627551068000"/>
+    <typeInfo handle="=meuprojeto01/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.m2ra.meuprojeto.interfaces{EstadoUFRepository.java[EstadoUFRepository" modifiers="513" timestamp="1627122212000"/>
+</typeInfoHistroy>
