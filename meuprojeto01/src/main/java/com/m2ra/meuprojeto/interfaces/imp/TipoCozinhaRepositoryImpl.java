@@ -7,12 +7,12 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.m2ra.meuprojeto.interfaces.TipoCozinhaRepository;
 import com.m2ra.meuprojeto.modelo.TipoCozinha;
 
-@Component
+@Repository
 public class TipoCozinhaRepositoryImpl implements TipoCozinhaRepository {
 	
 	@PersistenceContext
@@ -42,5 +42,18 @@ public class TipoCozinhaRepositoryImpl implements TipoCozinhaRepository {
 			throw new EmptyResultDataAccessException(1);
 		}
 		em.remove(tipoCozinha);
+	}
+
+	@Override
+	public List<TipoCozinha> listarPorNome(String nome) {
+		return em.createQuery("from TipoCozinha where nome = :nome",TipoCozinha.class).setParameter("nome", nome)
+				.getResultList();
+	}
+
+	@Override
+	public List<TipoCozinha> listarPorParteDoNome(String parteDoNome) {
+		return em.createQuery("from TipoCozinha where nome like :nome ", TipoCozinha.class)
+				.setParameter("nome", "%"+parteDoNome+"%")
+				.getResultList();
 	}
 }

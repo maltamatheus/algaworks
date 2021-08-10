@@ -75,5 +75,13 @@ public class CadastroTipoCozinhaEngine {
 		return tipoCozinhaRepository.salvar(tipoCozinhaAtual);
 
 	}
+	
+	public List<TipoCozinha> listarPorNome(String nome){
+		return tipoCozinhaRepository.listarPorNome(nome);
+	}
+	
+	public List<TipoCozinha> listarPorParteDoNome(String parteDoNome){
+		return tipoCozinhaRepository.listarPorParteDoNome(parteDoNome);
+	}
 
 }
