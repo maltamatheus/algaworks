@@ -49,18 +49,17 @@ public class TipoCozinhaController {
 	}
 
 	@GetMapping("/{tipoCozinhaId}")
-	public ResponseEntity<TipoCozinha> buscar(@PathVariable("tipoCozinhaId") Long id) {
-
-		TipoCozinha tipoCozinha = cadastroTipoCozinha.buscar(id);
-
-		if (tipoCozinha != null) {
-
-			return ResponseEntity.status(HttpStatus.OK).body(tipoCozinha);
-//			return ResponseEntity.ok(tipoCozinha);
+	public ResponseEntity<?> buscar(@PathVariable("tipoCozinhaId") Long id) {
+		
+		try {
+			
+			return ResponseEntity.status(HttpStatus.OK).body(cadastroTipoCozinha.buscar(id));
+			
+		} catch (EntidadeNaoEncontradaException e){
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+			
 		}
-
-//		return ResponseEntity.notFound().build();
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
 	}
 
@@ -70,7 +69,7 @@ public class TipoCozinhaController {
 	}
 
 	@PutMapping("/{idTipoCozinha}")
-	public ResponseEntity<TipoCozinha> atualizar(@PathVariable Long idTipoCozinha,
+	public ResponseEntity<?> atualizar(@PathVariable Long idTipoCozinha,
 			@RequestBody TipoCozinha tipoCozinha) {
 
 		try {
@@ -79,14 +78,12 @@ public class TipoCozinhaController {
 			
 		} catch (EntidadeNaoEncontradaException e) {
 			
-			System.out.println(e.getMessage());
-			
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
 	}
 
 	@DeleteMapping("/{idTipoCozinha}")
-	public ResponseEntity<String> excluir(@PathVariable Long idTipoCozinha) {
+	public ResponseEntity<?> excluir(@PathVariable Long idTipoCozinha) {
 
 		try {
 

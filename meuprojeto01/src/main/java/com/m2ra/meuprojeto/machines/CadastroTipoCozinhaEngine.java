@@ -1,13 +1,12 @@
 package com.m2ra.meuprojeto.machines;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.m2ra.meuprojeto.interfaces.RestauranteRepository;
@@ -27,16 +26,16 @@ public class CadastroTipoCozinhaEngine {
 	private RestauranteRepository restauranteRepository;
 
 	public TipoCozinha adicionar(TipoCozinha tipoCozinha) {
-		return tipoCozinhaRepository.salvar(tipoCozinha);
+		return tipoCozinhaRepository.save(tipoCozinha);
 	}
 
 	public String excluir(Long id) {
 
-		TipoCozinha tipoCozinha = tipoCozinhaRepository.buscar(id);
+		TipoCozinha tipoCozinha = this.buscar(id);
 
 		try {
 
-			tipoCozinhaRepository.excluir(id);
+			tipoCozinhaRepository.deleteById(tipoCozinha.getId());
 
 			return tipoCozinha.toString() + " excluído com sucesso";
 
@@ -55,33 +54,44 @@ public class CadastroTipoCozinhaEngine {
 	}
 
 	public List<TipoCozinha> listar() {
-		return tipoCozinhaRepository.listar();
+		return tipoCozinhaRepository.findAll();
 	}
 
 	public TipoCozinha buscar(Long id) {
-		return tipoCozinhaRepository.buscar(id);
+		return tipoCozinhaRepository.findById(id).get();
 	}
 
 	public TipoCozinha atualizar(Long idTipoCozinha, TipoCozinha tipoCozinha) {
+		TipoCozinha tipoCozinhaAtual = tipoCozinhaRepository.findById(idTipoCozinha).get();
 
-		TipoCozinha tipoCozinhaAtual = tipoCozinhaRepository.buscar(idTipoCozinha);
-		
-		if(tipoCozinhaAtual == null) {
+		if (tipoCozinhaAtual == null) {
 			throw new EntidadeNaoEncontradaException("Tipo cozinha id " + idTipoCozinha + " não encontrado");
 		}
 
 		BeanUtils.copyProperties(tipoCozinha, tipoCozinhaAtual, "id");
 
-		return tipoCozinhaRepository.salvar(tipoCozinhaAtual);
+		return tipoCozinhaRepository.save(tipoCozinhaAtual);
 
 	}
-	
-	public List<TipoCozinha> listarPorNome(String nome){
-		return tipoCozinhaRepository.listarPorNome(nome);
+
+	public TipoCozinha buscaTipoCozinhaPorNome(String nome) {
+		return tipoCozinhaRepository.findTipoCozinhaByNome(nome);
+	}
+
+	public TipoCozinha consultaTipoCozinhaPorNome(String nome) {
+		return tipoCozinhaRepository.consultaTipoCozinhaPorNome(nome);
+	}
+
+	public List<TipoCozinha> buscaTipoCozinhaPorNomeContendo(String parteDoNome) {
+		return tipoCozinhaRepository.findTipoCozinhaByNomeContaining(parteDoNome);
+	}
+
+	public List<TipoCozinha> consultaTipoCozinhaPorNomeContendo(String trechoDoNome){
+		return tipoCozinhaRepository.consultaTipoCozinhaPorNomeContendo(trechoDoNome);
 	}
 	
-	public List<TipoCozinha> listarPorParteDoNome(String parteDoNome){
-		return tipoCozinhaRepository.listarPorParteDoNome(parteDoNome);
+	public List<TipoCozinha> pesquisaTipoCozinhaPorNomeContendo(String trechoDoNome){
+		return tipoCozinhaRepository.pesquisaTipoCozinhaPorNomeContendo(trechoDoNome);
 	}
 
 }
