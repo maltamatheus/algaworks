@@ -32,7 +32,7 @@ public class CadastroRestauranteEngine {
 	
 	public Restaurante adicionar(Restaurante restaurante) {
 		
-		TipoCozinha tipoCozinha = tipoCozinhaRepository.buscar(restaurante.getTipoCozinha().getId());
+		TipoCozinha tipoCozinha = tipoCozinhaRepository.findById(restaurante.getTipoCozinha().getId()).get();
 
 		if (tipoCozinha == null) {
 			throw new EntidadeNaoEncontradaException("Tipo Cozinha não cadastrado");
@@ -49,7 +49,7 @@ public class CadastroRestauranteEngine {
 			throw new EntidadeNaoEncontradaException("Restaurante " + id + " não encontrado");
 		}
 
-		TipoCozinha tipoCozinha = tipoCozinhaRepository.buscar(restaurante.getTipoCozinha().getId());
+		TipoCozinha tipoCozinha = tipoCozinhaRepository.findById(restaurante.getTipoCozinha().getId()).get();
 		
 		if (tipoCozinha == null) {
 			throw new ChaveNaoEncontradaException("Tipo Cozinha " + restaurante.getTipoCozinha().getId() + " não cadastrado");

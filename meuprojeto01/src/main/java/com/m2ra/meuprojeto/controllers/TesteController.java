@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.m2ra.meuprojeto.interfaces.imp.TipoCozinhaRepositoryImpl;
 import com.m2ra.meuprojeto.machines.CadastroTipoCozinhaEngine;
 import com.m2ra.meuprojeto.modelo.exceptions.EntidadeNaoEncontradaException;
 
@@ -18,6 +19,9 @@ public class TesteController {
 
 	@Autowired
 	private CadastroTipoCozinhaEngine cadastroTipoCozinha;
+	
+	@Autowired
+	private TipoCozinhaRepositoryImpl tipoCozinhaRepImp;
 
 	@GetMapping("/busca-tipocozinha-por-nome")
 	public ResponseEntity<?> buscaTipoCozinhaPorNome(@RequestParam String nome) {
@@ -75,6 +79,11 @@ public class TesteController {
 		} catch (EmptyResultDataAccessException e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não existem cozinhas com esse critério");
 		}
+	}
+	
+	@GetMapping("/consulta-tipocozinha-customizado")
+	public ResponseEntity<?> consultaTipoCozinhaCustomizado(String nome){
+		return ResponseEntity.status(HttpStatus.OK).body(tipoCozinhaRepImp.consultar(nome));
 	}
 
 }

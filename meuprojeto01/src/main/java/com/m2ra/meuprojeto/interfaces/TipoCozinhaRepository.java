@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.m2ra.meuprojeto.modelo.TipoCozinha;
 
 @Repository
-public interface TipoCozinhaRepository extends JpaRepository<TipoCozinha, Long>{
+public interface TipoCozinhaRepository extends JpaRepository<TipoCozinha, Long>, TipoCozinhaRepositoryCustomizado{
 	
 	TipoCozinha findTipoCozinhaByNome(String nome);
 	
@@ -23,4 +23,5 @@ public interface TipoCozinhaRepository extends JpaRepository<TipoCozinha, Long>{
 	List<TipoCozinha> consultaTipoCozinhaPorNomeContendo(@Param("parteDoNome") String trechoDoNome);
 	
 	List<TipoCozinha> pesquisaTipoCozinhaPorNomeContendo(String nome);
+	
 }

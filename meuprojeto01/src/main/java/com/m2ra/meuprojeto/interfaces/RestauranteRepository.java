@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.m2ra.meuprojeto.modelo.Restaurante;
 
-public interface RestauranteRepository {
+public interface RestauranteRepository extends RestauranteRepositoryCustomizado{
 	
 	List<Restaurante> listar();
 	
